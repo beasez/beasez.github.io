@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Image Mover</title>
+<style>
+DIV.movable { position:absolute; }
+</style>
+
+<body onload="moveImage()">
+<div id="hey" class="movable">
+<img src="" alt="QUIZ!!!">
+</div>
+<script language="javascript">
+var x = 5; //Starting Location - left
+var y = 5; //Starting Location - top
+var dest_x = 500;  //Ending Location - left
+var dest_y = 500;  //Ending Location - top
+var interval = 20; //Move 10px every initialization
+
+function moveImage() {
+	//Keep on moving the image till the target is achieved
+	if(x<dest_x) x = x + interval; 
+	if(y<dest_y) y = y + interval;
+	
+	//Move the image to the new location
+	document.getElementById("hey").style.top  = y+'px';
+	document.getElementById("hey").style.left = x+'px';
+
+	if ((x+interval < dest_x) && (y+interval < dest_y)) {
+		//Keep on calling this function every 100 microsecond 
+		//	till the target location is reached
+		window.setTimeout('moveImage()',100);
+	}
+}
+</script>
+</head>
+
+
+</body>
+</html>
+
+<h1>Start Quiz</h1>
+</head>
+<%= form_tag({:controller => "quiz",
+				  :action => "start"}) do %>
+  <p><%= label_tag(:number, "How many questions do you want in the quiz?", :id => "question") %></p>
+  <p class="center"><%= select_tag(:number, options_for_select((1..@max_questions).map {|x| [x, x]}), :id => "count") %> <br /></p>
+
+  <div class="center">
+	 <%= submit_tag "Start!", :class => "submit"%>
+  </div>
+<% end %>
+
+<% content_for(:title) do %>
+  Start Quiz
+<% end %>

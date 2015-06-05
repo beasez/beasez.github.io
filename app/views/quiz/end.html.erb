@@ -1,0 +1,16 @@
+
+<h1>Results</h1>
+
+<p id="question">You got <%= @correct %> out of <%= @total %> answers.</p>
+
+<p id="score"><%= @score %>%</p>
+
+<%=form_tag({:controller => "quiz", :action => "index"}, :method => "get") do %>
+  <div class="center">
+	 <%=submit_tag("Go Again!",:class => "Submit") %>
+  </div>
+<% end %>
+
+<% content_for(:title) do %>
+  Results
+<% end %>
