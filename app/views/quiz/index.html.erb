@@ -30,6 +30,7 @@ function moveImage() {
 		//	till the target location is reached
 		window.setTimeout('moveImage()',100);
 	}
+	// moving image in javascript
 }
 </script>
 </head>
@@ -43,10 +44,12 @@ function moveImage() {
 <%= form_tag({:controller => "quiz",
 				  :action => "start"}) do %>
   <p><%= label_tag(:number, "How many questions do you want in the quiz?", :id => "question") %></p>
+  <!-- amount of questions code -->
   <p class="center"><%= select_tag(:number, options_for_select((1..@max_questions).map {|x| [x, x]}), :id => "count") %> <br /></p>
 
   <div class="center">
 	 <%= submit_tag "Start!", :class => "submit"%>
+	 <!-- button for beginning quiz -->
   </div>
 <% end %>
 
